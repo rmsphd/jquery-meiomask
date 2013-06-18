@@ -144,6 +144,7 @@
                 type: 'fixed', // the mask of this mask
                 maxLength: -1, // the maxLength of the mask
                 defaultValue: '', // the default value for this input
+                changeMaxLength: true, // define that change maxLength or not
                 signal: false, // this should not be set, to use signal at masks put the signal you want ('-' or '+') at the default value of this mask.
                                // See the defined masks for a better understanding.
 
@@ -273,7 +274,9 @@
                         $this.data('mask', o);
 
                         // removes the maxLength attribute (it will be set again if you use the unset method)
-                        $this.removeAttr(mlStr);
+                        if (o.changeMaxLength) {
+	                        $this.removeAttr(mlStr);
+	                }
 
                         // setting the input events
                         $this.bind('keydown.mask', {func:maskObj._onKeyDown, thisObj:maskObj}, maskObj._onMask)
